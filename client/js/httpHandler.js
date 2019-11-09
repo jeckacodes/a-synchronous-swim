@@ -11,13 +11,14 @@
       cache: false,
       contentType: false,
       processData: false,
-      success: () => {
-        // reload the page
+      success: (data) => {
+        console.log(data);
+        SwimTeam.move(data);
         // pass information on to SwimTeam
-        window.location = window.location.href;
+        //window.location = window.location.href; //reloads the screen
       },
       complete: () => {
-        setTimeout(ajaxGetRequest, 500);
+        setTimeout(ajaxGetRequest, 1500);
       }
     });
   };
@@ -28,7 +29,7 @@
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
-  const ajaxFileUplaod = (file) => {
+  const ajaxFileUpload = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
