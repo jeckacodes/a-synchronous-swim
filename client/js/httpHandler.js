@@ -1,9 +1,26 @@
-(function() {
+(function () {
 
   const serverUrl = 'http://127.0.0.1:3000';
 
   //
   // TODO: build the swim command fetcher here
+  const ajaxGetRequest = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: () => {
+        // reload the page
+        // pass information on to SwimTeam
+        window.location = window.location.href;
+      },
+      complete: () => {
+        setTimeout(ajaxGetRequest, 500);
+      }
+    });
+  };
   //
 
   /////////////////////////////////////////////////////////////////////
@@ -17,7 +34,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -43,7 +60,11 @@
       return;
     }
 
-    ajaxFileUplaod(file);
+    ajaxFileUpload(file);
   });
 
+  setTimeout(ajaxGetRequest, 500);
 })();
+
+// setTimeout to ask for info from server
+// pass responses to swimTeam
