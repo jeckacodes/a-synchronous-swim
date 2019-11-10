@@ -9,12 +9,16 @@
       type: 'GET',
       url: serverUrl,
       cache: false,
-      contentType: false,
+      contentType: true,
       processData: false,
       success: (data) => {
         console.log(data);
         SwimTeam.move(data);
         // pass information on to SwimTeam
+        // set background image with CSS/jQuery
+        // $.css('background-image', `url(${serverUrl}/background.jpg)`)
+        // var img = document.createElement('img');
+        // img.src = 'data:image/jpeg;base64,' + btoa(data.postData.data)
         //window.location = window.location.href; //reloads the screen
       },
       complete: () => {
